@@ -22,3 +22,19 @@ def b1: Bool := true
 #check Nat.succ 2
 #eval Nat.succ 2 + 1
 #eval Nat.add 5 2
+#eval (5, 9).2
+#eval Nat.add 3 3
+
+def α : Type := Nat
+def β : Type := Bool
+def F : Type → Type := List
+#check α
+#check List
+#check Prod
+
+#check fun (x : Nat) => x + 5
+#check fun x => x + 5
+#eval (fun x : Nat => x + 5) 13
+#check fun (x : Nat) (y : Bool) => if not y then x + 1 else x + 2
+#check fun x y => if not y then x + 1 else x + 2
+#eval (fun x y => if not y then x + 1 else x + 2) 3 true
