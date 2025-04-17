@@ -44,3 +44,23 @@ def F : Type → Type := List
 #check (1-2:Int)
 def lean : String := "lean"
 #eval lean
+def add1 (n: Nat) : Nat := n + 1
+#eval add1 2
+def maximum (n : Nat) (m: Nat) : Nat := if n > m then n else m
+#eval maximum 2 4
+#eval maximum 2 3
+structure Point where
+  x : Float
+  y : Float
+deriving Repr
+
+#check Point
+def origin : Point := { x := 0.0, y := 0.0 }
+
+def origin.x : Float := 1.0
+#eval origin
+
+def uporigin : Point := { origin with y := 1.0}
+def addPoints (p1 : Point) (p2 : Point) : Point :=
+    { x := p1.x + p2.x, y := p1.y + p2.y }
+#eval addPoints origin uporigin
