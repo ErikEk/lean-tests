@@ -38,3 +38,9 @@ def F : Type → Type := List
 #check fun (x : Nat) (y : Bool) => if not y then x + 1 else x + 2
 #check fun x y => if not y then x + 1 else x + 2
 #eval (fun x y => if not y then x + 1 else x + 2) 3 true
+
+#eval String.append "s" (String.append "s" "d")
+#eval String.append "it is" (if 1 > 2 then "true" else "false")
+#check (1-2:Int)
+def lean : String := "lean"
+#eval lean
