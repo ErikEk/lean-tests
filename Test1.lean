@@ -74,3 +74,25 @@ def Point.modifyBoth (f: Float → Float) (p: Point) : Point :=
   { x := f p.x, y := f p.y }
 
 #eval uporigin.modifyBoth Float.floor
+
+structure RectangularPrism where
+  width : Float
+  height : Float
+  depth : Float
+  deriving Repr
+
+def RectangularVolume (r : RectangularPrism) : Float :=
+  r.width * r.height * r.depth
+
+def rect : RectangularPrism :=
+  { width := 1.0, height := 2.0, depth := 3.0 }
+
+#eval rect
+#eval RectangularVolume rect
+
+def pred (n : Nat) : Nat :=
+  match n with
+  | Nat.zero => Nat.zero
+  | Nat.succ k => k
+
+#eval pred 2
