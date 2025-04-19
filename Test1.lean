@@ -60,7 +60,17 @@ def origin : Point := { x := 0.0, y := 0.0 }
 def origin.x : Float := 1.0
 #eval origin
 
-def uporigin : Point := { origin with y := 1.0}
+def uporigin : Point := { origin with y := 1.1}
 def addPoints (p1 : Point) (p2 : Point) : Point :=
     { x := p1.x + p2.x, y := p1.y + p2.y }
 #eval addPoints origin uporigin
+
+def dist (p1 : Point) (p2 : Point) : Float :=
+  Float.sqrt ((p1.x - p2.x) ^ 2.0 + (p1.y - p2.y) ^ 2.0)
+#eval dist origin uporigin
+
+#eval "one string".append " another string"
+def Point.modifyBoth (f: Float → Float) (p: Point) : Point :=
+  { x := f p.x, y := f p.y }
+
+#eval uporigin.modifyBoth Float.floor
