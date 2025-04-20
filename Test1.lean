@@ -102,4 +102,11 @@ def even (n : Nat) : Bool :=
   match n with
   | Nat.zero => true
   | Nat.succ k => not (even k)
+
 #eval even 2
+
+def fib : Nat → Nat
+  | 0 => 0
+  | 1 => 1
+  | n => n + 2
+#eval fib 2
