@@ -96,3 +96,10 @@ def pred (n : Nat) : Nat :=
   | Nat.succ k => k
 
 #eval pred 2
+
+
+def even (n : Nat) : Bool :=
+  match n with
+  | Nat.zero => true
+  | Nat.succ k => not (even k)
+#eval even 2
