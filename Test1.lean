@@ -119,3 +119,16 @@ def plus (n : Nat) (k : Nat) : Nat :=
   | Nat.succ k' => Nat.succ (plus n k')
 
 #eval plus 3 2
+
+def mult (n : Nat) (k : Nat) : Nat :=
+  match k with
+  | Nat.zero => Nat.zero
+  | Nat.succ k' => plus n (mult n k')
+#eval mult 3 2
+
+def minus (n : Nat) (k : Nat) : Nat :=
+  match k with
+  | Nat.zero => n
+  | Nat.succ k' => Nat.pred (minus n k')
+
+#eval minus 3 2
