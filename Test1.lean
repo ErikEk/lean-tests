@@ -132,3 +132,11 @@ def minus (n : Nat) (k : Nat) : Nat :=
   | Nat.succ k' => Nat.pred (minus n k')
 
 #eval minus 3 2
+
+/- Needs a proof of termination.
+def div (n : Nat) (k : Nat) : Nat :=
+  if n < k then
+    0
+  else Nat.succ (div (n - k) k)
+
+#eval div 10 3 -/
