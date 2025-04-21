@@ -140,3 +140,23 @@ def div (n : Nat) (k : Nat) : Nat :=
   else Nat.succ (div (n - k) k)
 
 #eval div 10 3 -/
+
+structure PPoint (α : Type) where
+  x : α
+  y : α
+  deriving Repr
+def testNat : PPoint Nat := { x := 1, y := 2 }
+def testFloat : PPoint Float := { x := 1, y := 2 }
+def replaceX (α : Type) (p : PPoint α) (newX : α) : PPoint α :=
+  {p with x := newX}
+#eval replaceX Nat testNat 3
+
+inductive Sign where
+  | pos : Sign
+  | neg : Sign
+def posOrnegThree (s : Sign) : match s with | Sign.pos => Nat | Sign.neg => Int :=
+  match s with
+  | Sign.pos => 3
+  | Sign.neg => -3
+
+#eval posOrnegThree Sign.neg
