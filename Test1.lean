@@ -156,7 +156,11 @@ inductive Sign where
   | neg : Sign
 def posOrnegThree (s : Sign) : match s with | Sign.pos => Nat | Sign.neg => Int :=
   match s with
-  | Sign.pos => 3
-  | Sign.neg => -3
+  | Sign.pos => (3 : Nat)
+  | Sign.neg => (-3 : Int)
 
 #eval posOrnegThree Sign.neg
+def listTest : List Nat := [1, 2, 3]
+#eval listTest.head?
+#eval [].head? (α := Int)
+#eval ([] : List Int).head?
