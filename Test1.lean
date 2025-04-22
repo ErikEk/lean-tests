@@ -164,3 +164,22 @@ def listTest : List Nat := [1, 2, 3]
 #eval listTest.head?
 #eval [].head? (α := Int)
 #eval ([] : List Int).head?
+
+/-structure Prod (α : Type) (β : Type) where
+  fst : α
+  snd: β-/
+
+def fives : String × Int × Nat := ("five", -5, 5)
+#eval fives.fst
+#eval fives.snd
+
+def PetName : Type := String ⊕ String
+def animals : List PetName :=
+  [Sum.inl "spot", Sum.inr "Tiger", Sum.inl "Fifi", Sum.inl "Rex", Sum.inr "floo"]
+
+def howManyDogs (pets : List PetName) : Nat :=
+  match pets with
+  | [] => 0
+  | Sum.inl _ :: morePets => howManyDogs morePets + 1
+  | Sum.inr _ :: morePets => howManyDogs morePets
+#eval howManyDogs animals
