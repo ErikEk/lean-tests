@@ -22,3 +22,18 @@ def main : IO Unit := do
 #eval "Hello...   ".dropRightWhile (fun c => not (c.isAlphanum))
 
 #eval nTimes (IO.println "hello") 3
+
+def countdown : Nat → List (IO Unit)
+  | 0 => [IO.println "Blask of!"]
+  | n + 1 => IO.println s!"{n + 1}" :: countdown n
+
+def from5 : List (IO Unit) := countdown 4
+#eval from5.length
+
+def runActions : List (IO Unit) → IO Unit
+  | [] => pure ()
+  | act :: actions => do
+    act
+    runActions actions
+
+#eval runActions from5
