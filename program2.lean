@@ -2,7 +2,6 @@ import Mathlib
 
 open Real
 
-
 #check 2
 
 def myFavNum : ℕ := 7
