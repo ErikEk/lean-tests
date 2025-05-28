@@ -98,7 +98,6 @@ def pred (n : Nat) : Nat :=
 
 #eval pred 2
 
-
 def even (n : Nat) : Bool :=
   match n with
   | Nat.zero => true
