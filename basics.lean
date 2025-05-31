@@ -89,6 +89,7 @@ def rect : RectangularPrism :=
   { width := 1.0, height := 2.0, depth := 3.0 }
 
 #eval rect
+
 #eval RectangularVolume rect
 
 def pred (n : Nat) : Nat :=
