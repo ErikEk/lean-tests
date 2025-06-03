@@ -1,6 +1,7 @@
 import Mathlib
-/-import Std.Data.Nat.Basic-/
+
 /-open Real-/
+
 open Nat
 #check 2
 
@@ -11,6 +12,7 @@ example (a b : ℕ) : a * b = b * a := Nat.mul_comm a b
 
 theorem add_zero_2 (n : ℕ) : n + 0 = n :=
   Nat.add_zero n
+
 
 #check add_zero_2
 example (x : ℕ) := add_zero_2 x
