@@ -1,7 +1,5 @@
 import Mathlib
 
-/-open Real-/
-
 open Nat
 #check 2
 
