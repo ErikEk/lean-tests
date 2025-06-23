@@ -2,8 +2,13 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Tactic.Cases
 import Mathlib.Analysis.InnerProductSpace.Basic
 import Mathlib.Algebra.Group.Basic
-
+import Mathlib.Data.Real.Basic
 set_option diagnostics true
+
+
+example : ∀ x : ℝ, x^2 ≥ 0 := by
+  intro x
+  exact sq_nonneg x
 
 example (x y : ℕ) : x + y = y + x := by
   exact Nat.add_comm x y
@@ -18,6 +23,7 @@ theorem andImpliesOr : A ∧ B → A ∨ B :=
     fun andEvidence =>
         match andEvidence with
         | And.intro a b => Or.inl a
+
 
 /-
 -/
