@@ -1,5 +1,13 @@
 import Mathlib.Data.Real.Basic
 import Mathlib.Tactic.Cases
+import Mathlib.Analysis.InnerProductSpace.Basic
+import Mathlib.Algebra.Group.Basic
+
+set_option diagnostics true
+
+example (x y : ℕ) : x + y = y + x := by
+  exact Nat.add_comm x y
+
 
 def OnePlusOneIsTwo : Prop := 1 + 1 = 2
 theorem oneplusoneistwo : OnePlusOneIsTwo := rfl
