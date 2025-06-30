@@ -13,7 +13,6 @@ example : ∀ x : ℝ, x^2 ≥ 0 := by
 example (x y : ℕ) : x + y = y + x := by
   exact Nat.add_comm x y
 
-
 def OnePlusOneIsTwo : Prop := 1 + 1 = 2
 theorem oneplusoneistwo : OnePlusOneIsTwo := rfl
 theorem onplusoneistwo : 1 + 1 = 2 := by
