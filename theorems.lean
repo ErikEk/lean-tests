@@ -5,7 +5,6 @@ import Mathlib.Algebra.Group.Basic
 import Mathlib.Data.Real.Basic
 set_option diagnostics true
 
-
 example : ∀ x : ℝ, x^2 ≥ 0 := by
   intro x
   exact sq_nonneg x
