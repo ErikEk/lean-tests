@@ -15,9 +15,11 @@ theorem constant_function_is_continuious_at_a_point
   dsimp [IsContinuousAt]
   intro ε hεbigger0
   exists 1
-  --apply And.intro
-  --{ exact one_pos }
-  simp only [one_pos, true_and]
+  apply And.intro
+  { exact one_pos }
+  --simp only [one_pos, true_and]
   intro x _h_xδ_criterion
-  simp only [sub_self, abs_zero]
+  rw [sub_self]
+  rw [abs_zero]
+  --simp only [sub_self, abs_zero]
   exact hεbigger0
