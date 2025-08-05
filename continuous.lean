@@ -18,3 +18,6 @@ theorem constant_function_is_continuious_at_a_point
   --apply And.intro
   --{ exact one_pos }
   simp only [one_pos, true_and]
+  intro x _h_xδ_criterion
+  simp only [sub_self, abs_zero]
+  exact hεbigger0
