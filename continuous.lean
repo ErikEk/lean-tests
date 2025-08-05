@@ -46,5 +46,8 @@ theorem linear_function_is_continuious_at_a_point
     _ = |m| * |x' - a'|
       := abs_mul m (x' - a')
     _ < |m| * δ
-      :=  (mul_lt_mul_left (by positivity)).mpr
-        h_xδ_criterion
+      :=  (mul_lt_mul_left (by positivity)).mpr h_xδ_criterion
+    _ = |m| * (ε/|m|)
+      := rfl
+    _ = ε
+      := by field_simp
