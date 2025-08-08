@@ -1,27 +1,6 @@
 import Continuity.continuous
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 --------------------------------------------------------------------------------
 -- # Definition of left- and right-continuity
 --------------------------------------------------------------------------------
@@ -116,17 +95,13 @@ example : ¬IsContinuousAt Set.univ (fun x ↦ Heaviside x) ⟨0, trivial⟩ := 
 --------------------------------------------------------------------------------
 
 theorem LeftRightContinuousIffIsContinuous
-    (D : Set ℝ) (f: D → ℝ) (a : D)
-    : (IsContinuousAt D f a)
-      ↔ (IsLeftContinuousAt D f a ∧ IsRightContinuousAt D f a) := by
-
+  (D : Set ℝ) (f : D → ℝ) (a : D) : (IsContinuousAt D f a) ↔
+    (IsLeftContinuousAt D f a ∧ IsRightContinuousAt D f a) := by
   constructor
-
-  -- Left side implies right side,
-  -- i.e. (continuity) → (left- and right-continuity)
+    -- left side implies right side
   · intro h_continuous
-    constructor
 
+    constructor
     -- Left-continuity
     · dsimp [IsLeftContinuousAt]
       intro ε h_εbigger0
@@ -136,45 +111,44 @@ theorem LeftRightContinuousIffIsContinuous
       intro x _h_x_smaller_a h_x_δ_criterion
       exact h_δ x h_x_δ_criterion
 
+
     -- Right-continuity
-    · dsimp [IsLeftContinuousAt]
+    · dsimp [IsRightContinuousAt]
       intro ε h_εbigger0
       obtain ⟨δ, h_δbigger0, h_δ⟩ := h_continuous ε (by linarith)
       use δ
       use h_δbigger0
-      intro x _h_x_bigger_a h_x_δ_criterion
+      intro x _h_x_smaller_a h_x_δ_criterion
       exact h_δ x h_x_δ_criterion
 
-  -- Right side implies left side,
-  -- i.e. (left- and right-continuity) → (continuity)
-  · intro h_left_and_right_continuous
-    rcases h_left_and_right_continuous with ⟨left_continuous, right_continuous⟩
-    intro ε h_εbigger0
+  intro h_left_and_right_continuous
+  rcases h_left_and_right_continuous
+    with ⟨left_continuous, right_continuous⟩
+  intro ε h_εbigger0
+  -- #print IsLeftContinuousAt
+  obtain ⟨δ_1, hδ_1, hδ_1_prop⟩ := left_continuous ε (by linarith)
+  obtain ⟨δ_2, hδ_2, hδ_2_prop⟩ := right_continuous ε (by linarith)
 
-    -- `δ₁` and `δ₂` obtained from left- and right-continuity
-    obtain ⟨δ₁, hδ₁, hδ₁_prop⟩ := left_continuous ε (by linarith)
-    obtain ⟨δ₂, hδ₂, hδ₂_prop⟩ := right_continuous (ε) (by linarith)
-    use min δ₁ δ₂
-    use lt_min hδ₁ hδ₂
+  use min δ_1 δ_2
+  use lt_min hδ_1 hδ_2
+  intro x h_x_δ_criterion
+  by_cases h_a_value : x < a
+  -- if x < a (use left-continuity)
+  · apply hδ_1_prop x h_a_value
+    apply lt_of_lt_of_le h_x_δ_criterion
+    apply min_le_left
+  -- if x ≥ a
+  · push_neg at h_a_value
+    by_cases h_a_value' : x = a
+    -- x = a
+    · rw [h_a_value']
+      simp [abs_zero, h_εbigger0]
 
-    intro x h_x_δ_criterion
+    -- x > a (right-continuity)
+    · have h_x_bigger_a : x > a := by
+        push_neg at h_a_value'
+        exact lt_of_le_of_ne h_a_value (id (Ne.symm h_a_value'))
 
-    by_cases h_a_value : x < a
-    -- x < a (use left-continuity)
-    · apply hδ₁_prop x h_a_value
+      apply hδ_2_prop x h_x_bigger_a
       apply lt_of_lt_of_le h_x_δ_criterion
-      apply min_le_left
-
-    -- x ≥ a
-    · push_neg at h_a_value
-      by_cases h_a_value' : x = a
-      -- x = a
-      · rewrite [h_a_value']
-        simp [abs_zero, h_εbigger0]
-      -- x > a (use right-continuity)
-      · have h_x_bigger_a : x > a := by
-          push_neg at h_a_value'
-          exact lt_of_le_of_ne h_a_value (id (Ne.symm h_a_value'))
-        apply hδ₂_prop x h_x_bigger_a
-        apply lt_of_lt_of_le h_x_δ_criterion
-        apply min_le_right
+      apply min_le_right
