@@ -98,9 +98,10 @@ example (x y : ℕ) : (x ≤ y ∨ y ≤ x) := by
       | inr h2 =>
         sorry
 -/
-example (x y : ℕ) (h : x = 37 ∧ y = 42) : (y = 42 ∨ x = 37) := by
+example (x y : ℕ) (h : x = 37 ∧ y = 42) : (y = 42 ∧ x = 37) := by
   cases h with
   | intro hx hy =>
     rw [hx, hy]
-    left
-    rfl
+    constructor
+    · rfl
+    · rfl
