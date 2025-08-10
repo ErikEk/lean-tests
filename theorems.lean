@@ -75,29 +75,26 @@ example (p q r : Prop) : ((p ∨ q) → r) ↔ ((p → r) ∧ (q → r)) := by
 
     }
 -/
-/--
+
 #check zero_le -- 0 ≤ x ↔ 0 ≤ x (for ordered types)
-example (x y : ℕ) : (x ≤ y ∨ y ≤ x) := by
+example (x y : ℕ) : x ≤ y ∨ y ≤ x := by
   induction y with
   | zero =>
       right
-      apply zero_le
+      apply Nat.zero_le
   | succ d hd =>
       cases hd with
-      |  inl h1 =>
+      | inl h1 =>
         left
         cases h1 with
-        | inl c =>
-          use c+1
-          rw [hc]
-          rw [succ_eq_add_one]
-          rw [←add_assoc]
-          rfl
-        | inr hc =>
-          sorry
+        | refl =>
+          apply Nat.le.step
+          apply Nat.le.refl
       | inr h2 =>
-        sorry
--/
+        right
+        apply Nat.le.step
+        exact h2
+
 example (x y : ℕ) (h : x = 37 ∧ y = 42) : (y = 42 ∧ x = 37) := by
   cases h with
   | intro hx hy =>
