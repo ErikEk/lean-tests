@@ -9,7 +9,7 @@ def IsContinuousAt (D : Set ℝ) (f : D → ℝ) (a : D) : Prop :=
 def IsContinuous (D: Set ℝ) (f : D → ℝ) : Prop :=
   ∀ a : D, IsContinuousAt D f a
 
-theorem constant_function_is_continuious_at_a_point
+theorem constant_function_is_continuous_at_a_point
   (D : Set ℝ) (c : ℝ) (a : D) : IsContinuousAt D (fun _ =>  c) a := by
   dsimp [IsContinuousAt]
   intro ε hεbigger0
@@ -23,12 +23,12 @@ theorem constant_function_is_continuious_at_a_point
   --simp only [sub_self, abs_zero]
   exact hεbigger0
 
-theorem linear_function_is_continuious_at_a_point
+theorem linear_function_is_continuous_at_a_point
   (D : Set ℝ) (m y0 : ℝ) (a : D) : IsContinuousAt D (fun x =>  m*x+y0) a := by
   by_cases m_cases : m = 0
   subst m
   simp only [zero_mul, zero_add]
-  exact constant_function_is_continuious_at_a_point D y0 a
+  exact constant_function_is_continuous_at_a_point D y0 a
   dsimp [IsContinuousAt]
   intro ε hεbigger0
   let δ := ε / |m|
@@ -51,3 +51,7 @@ theorem linear_function_is_continuious_at_a_point
       := rfl
     _ = ε
       := by field_simp
+
+theorem parabola_function_is_continuious_at_a_point
+  (D : Set ℝ) (a : D) : IsContinuousAt D (λ x => x^2) a := by
+  sorry
