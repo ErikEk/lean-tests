@@ -54,4 +54,7 @@ theorem linear_function_is_continuous_at_a_point
 
 theorem parabola_function_is_continuious_at_a_point
   (D : Set ℝ) (a : D) : IsContinuousAt D (λ x => x^2) a := by
-  sorry
+  let a' := a.val
+  dsimp [IsContinuousAt]
+  intro ε hεbigger0
+  let δ := ε / (2 * |a'| + 1) ⊓ 1
