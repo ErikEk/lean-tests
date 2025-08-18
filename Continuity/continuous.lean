@@ -58,3 +58,4 @@ theorem parabola_function_is_continuious_at_a_point
   dsimp [IsContinuousAt]
   intro ε hεbigger0
   let δ := ε / (2 * |a'| + 1) ⊓ 1
+  sorry
