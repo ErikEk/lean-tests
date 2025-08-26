@@ -1,0 +1,5 @@
+{"log":
+ [{"message":
+   ".> /home/erik/.elan/toolchains/leanprover--lean4---v4.19.0-rc3/bin/clang -o ././.lake/build/bin/greetings ././.lake/build/ir/Main.c.o.export ././.lake/build/ir/Greetings/Basic.c.o.export ././.lake/build/ir/Greetings.c.o.export ././.lake/build/ir/Greetings/Smile.c.o.export --sysroot /home/erik/.elan/toolchains/leanprover--lean4---v4.19.0-rc3 -L /home/erik/.elan/toolchains/leanprover--lean4---v4.19.0-rc3/lib -L /home/erik/.elan/toolchains/leanprover--lean4---v4.19.0-rc3/lib/glibc /home/erik/.elan/toolchains/leanprover--lean4---v4.19.0-rc3/lib/glibc/libc_nonshared.a /home/erik/.elan/toolchains/leanprover--lean4---v4.19.0-rc3/lib/glibc/libpthread_nonshared.a -Wl,--as-needed -Wl,-Bstatic -lgmp -lunwind -luv -Wl,-Bdynamic -Wl,--no-as-needed -fuse-ld=lld -L /home/erik/.elan/toolchains/leanprover--lean4---v4.19.0-rc3/lib/lean -Wl,--start-group -lleancpp -lLean -Wl,--end-group -lStd -Wl,--start-group -lInit -lleanrt -Wl,--end-group -Wl,-Bstatic -lc++ -lc++abi -Wl,-Bdynamic -lLake -Wl,--as-needed -lgmp -luv -lpthread -ldl -lrt -Wl,--no-as-needed -lm -ldl -pthread",
+   "level": "trace"}],
+ "depHash": "5492111870652240628"}

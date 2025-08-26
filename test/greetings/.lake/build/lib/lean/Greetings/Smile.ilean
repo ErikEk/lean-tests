@@ -1,0 +1,1 @@
+{"version":3,"references":{"{\"c\":{\"n\":\"String\",\"m\":\"Init.Prelude\"}}":{"usages":[[0,23,0,29,"Expression.happy",0,0,0,41,0,4,0,20]],"definition":null},"{\"c\":{\"n\":\"Expression.happy\",\"m\":\"Greetings.Smile\"}}":{"usages":[],"definition":[0,4,0,20]}},"module":"Greetings.Smile"}
