@@ -38,6 +38,7 @@ example (n : ℕ) : (1 : ℝ) ≤ 1.5^n := by
     have h : (1 : ℝ) ≤ 1.5 := by norm_num
     sorry
 -/
+
 theorem and_imp_iff (P Q R : Prop) : (P ∧ Q → R) ↔ (P → Q → R) := by
   constructor
   -- First direction: (P ∧ Q → R) → (P → Q → R)
