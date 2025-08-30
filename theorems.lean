@@ -109,3 +109,10 @@ lemma zero_add_own (n : Nat) : 0 + n = n := by
   induction n with
   | zero => rfl
   | succ n ih => simp [Nat.zero_add, ih]
+
+example (b k : Nat) : b + k = k + b := by
+  induction k with
+  | zero => simp
+  | succ k ih =>
+    rw [Nat.add_succ]
+    rw [ih, Nat.succ_add]
