@@ -104,3 +104,8 @@ example (x y : ℕ) (h : x = 37 ∧ y = 42) : (y = 42 ∧ x = 37) := by
     constructor
     · rfl
     · rfl
+
+lemma zero_add_own (n : Nat) : 0 + n = n := by
+  induction n with
+  | zero => rfl
+  | succ n ih => simp [Nat.zero_add, ih]
