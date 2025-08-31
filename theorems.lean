@@ -20,7 +20,7 @@ theorem onplusoneistwo : 1 + 1 = 2 := by
 theorem andImpliesOr {A B} : A ∧ B → A ∨ B :=
     fun andEvidence =>
         match andEvidence with
-        | And.intro a b => Or.inl a
+        | And.intro a _ => Or.inl a
 
 theorem onePlusOneAndLessThan : 1 + 1 = 2 ∨ 3 < 5 := by decide
 
