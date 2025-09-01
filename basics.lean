@@ -180,3 +180,4 @@ def howManyDogs (pets : List PetName) : Nat :=
   | Sum.inl _ :: morePets => howManyDogs morePets + 1
   | Sum.inr _ :: morePets => howManyDogs morePets
 #eval howManyDogs animals
+#eval howManyDogs animals
