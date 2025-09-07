@@ -24,6 +24,8 @@ theorem andImpliesOr {A B} : A ∧ B → A ∨ B :=
 
 theorem onePlusOneAndLessThan : 1 + 1 = 2 ∨ 3 < 5 := by decide
 
+
+
 /-
 simp -- solves goals if the firn A=B or A ↔ B
 norm_num -- sovles goals like 1.5 < 1.7 with numbers
@@ -36,6 +38,13 @@ example (n : ℕ) : (1 : ℝ) ≤ 1.5^n := by
     have h : (1 : ℝ) ≤ 1.5 := by norm_num
     sorry
 -/
+
+theorem and_comm_own (p q : Prop) : p ∧ q ↔ q ∧ p := by
+  constructor
+  · intro h
+    exact ⟨h.right, h.left⟩
+  · intro h
+    exact ⟨h.right, h.left⟩
 
 theorem and_imp_iff (P Q R : Prop) : (P ∧ Q → R) ↔ (P → Q → R) := by
   constructor
