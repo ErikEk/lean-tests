@@ -30,6 +30,7 @@ norm_num -- sovles goals like 1.5 < 1.7 with numbers
 linarith -- solves linear inequalites
 library_search -- looks for the exact lemma you need
 -/
+
 /-
 example (n : ℕ) : (1 : ℝ) ≤ 1.5^n := by
     have h : (1 : ℝ) ≤ 1.5 := by norm_num
