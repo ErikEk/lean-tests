@@ -3,7 +3,6 @@ import Mathlib.Data.List.Basic
 import Mathlib.Tactic.Cases
 import Mathlib.Analysis.InnerProductSpace.Basic
 import Mathlib.Algebra.Group.Basic
-import Mathlib.Data.Real.Basic
 set_option diagnostics true
 
 example : ∀ x : ℝ, x^2 ≥ 0 := by
@@ -114,6 +113,20 @@ lemma sum_append (l1 l2 : List Nat) : (l1 ++ l2).sum = l1.sum + l2.sum := by
       rw [ih]
       -- Reassociate
       rw [Nat.add_assoc]
+
+
+
+lemma map_id (l : List Nat) : l.map id = l := by
+  induction l with
+  | nil =>
+    -- base case: [].map id = []
+    rfl
+  | cons hd tl ih =>
+    -- inductive step: (hd :: tl).map id = hd :: (tl.map id)
+    -- by definition of map
+    change (id hd :: tl.map id) = (hd :: tl)
+    rw [ih]
+    rfl
 
 theorem and_comm_own (p q : Prop) : p ∧ q ↔ q ∧ p := by
   constructor
