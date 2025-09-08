@@ -63,6 +63,25 @@ lemma or_comm_own (P Q : Prop) : P ∨ Q → Q ∨ P := by
   | inl hp  => exact Or.inr hp
   | inr hq => exact Or.inl hq
 
+lemma mul_one_own (n : Nat) : n * 1 = n := by
+  induction n with
+  | zero =>
+    rw[Nat.zero_mul]
+  | succ k ik =>
+    rw [←ik]
+    rw [Nat.mul_one, Nat.mul_one]
+
+lemma succ_add_own (m n : Nat) : Nat.succ m + n = Nat.succ (m + n) := by
+  induction n with
+  | zero =>
+    -- base case: n = 0
+    rfl
+  | succ n ih =>
+    -- inductive step
+    rw [Nat.add_succ]
+    rw [ih]
+    rfl
+
 
 theorem and_comm_own (p q : Prop) : p ∧ q ↔ q ∧ p := by
   constructor
