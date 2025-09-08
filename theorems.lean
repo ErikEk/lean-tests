@@ -38,6 +38,11 @@ example (n : ℕ) : (1 : ℝ) ≤ 1.5^n := by
     have h : (1 : ℝ) ≤ 1.5 := by norm_num
     sorry
 -/
+lemma add_zero_own(n : Nat) : n + 0 = n := by
+  induction n with
+  | zero => rfl
+  | succ k ik =>
+    simp [Nat.add_zero, ik]
 
 theorem and_comm_own (p q : Prop) : p ∧ q ↔ q ∧ p := by
   constructor
