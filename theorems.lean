@@ -50,6 +50,12 @@ lemma even_plus_even_own (m n : Nat)
   rw [Nat.add_mod]
   rw [hm, hn]
 
+lemma not_not_own (P : Prop) : ¬¬P → P := by
+  intro nnp
+  by_contra hP
+  apply nnp
+  exact hP
+
 theorem and_comm_own (p q : Prop) : p ∧ q ↔ q ∧ p := by
   constructor
   · intro h
