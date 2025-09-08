@@ -44,6 +44,12 @@ lemma add_zero_own(n : Nat) : n + 0 = n := by
   | succ k ik =>
     simp [Nat.add_zero, ik]
 
+lemma even_plus_even_own (m n : Nat)
+  (hm : m % 2 = 0) (hn : n % 2 = 0) :
+  (m + n) % 2 = 0 := by
+  rw [Nat.add_mod]
+  rw [hm, hn]
+
 theorem and_comm_own (p q : Prop) : p ∧ q ↔ q ∧ p := by
   constructor
   · intro h
