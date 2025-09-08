@@ -82,6 +82,38 @@ lemma succ_add_own (m n : Nat) : Nat.succ m + n = Nat.succ (m + n) := by
     rw [ih]
     rfl
 
+lemma append_nil_own (l : List Nat) : l ++ [] = l := by
+  induction l with
+  | nil =>
+    rfl
+  | cons hd tl ih =>
+    simp [List.append]
+
+lemma nil_append_own (l : List Nat) : [] ++ l = l := by
+  induction l with
+  | nil =>
+    rfl
+  | cons hd tl ih =>
+    simp [List.append]
+
+lemma sum_append (l1 l2 : List Nat) : (l1 ++ l2).sum = l1.sum + l2.sum := by
+  induction l1 with
+  | nil =>
+    -- base case: [] ++ l2 = l2
+    -- ([] ++ l2).sum = l2.sum, and [].sum = 0
+    -- so goal: l2.sum = 0 + l2.sum
+    rw [List.sum_nil]
+    rw [Nat.zero_add]
+    rw [List.nil_append]
+  | cons hd tl ih =>
+      -- Goal: ((hd :: tl) ++ l2).sum = (hd :: tl).sum + l2.sum
+      change (hd :: (tl ++ l2)).sum = (hd :: tl).sum + l2.sum
+      -- Expand sums of cons on both sides
+      change hd + (tl ++ l2).sum = (hd + tl.sum) + l2.sum
+      -- Use the inductive hypothesis
+      rw [ih]
+      -- Reassociate
+      rw [Nat.add_assoc]
 
 theorem and_comm_own (p q : Prop) : p ∧ q ↔ q ∧ p := by
   constructor
