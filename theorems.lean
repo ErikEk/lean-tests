@@ -1,4 +1,5 @@
 import Mathlib.Data.Real.Basic
+import Mathlib.Data.List.Basic
 import Mathlib.Tactic.Cases
 import Mathlib.Analysis.InnerProductSpace.Basic
 import Mathlib.Algebra.Group.Basic
@@ -55,6 +56,13 @@ lemma not_not_own (P : Prop) : ¬¬P → P := by
   by_contra hP
   apply nnp
   exact hP
+
+lemma or_comm_own (P Q : Prop) : P ∨ Q → Q ∨ P := by
+  intro h
+  cases h with
+  | inl hp  => exact Or.inr hp
+  | inr hq => exact Or.inl hq
+
 
 theorem and_comm_own (p q : Prop) : p ∧ q ↔ q ∧ p := by
   constructor
