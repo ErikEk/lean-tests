@@ -114,6 +114,9 @@ lemma sum_append (l1 l2 : List Nat) : (l1 ++ l2).sum = l1.sum + l2.sum := by
       -- Reassociate
       rw [Nat.add_assoc]
 
+def seq_lim (a : ℕ→ℝ) (L : ℝ) :
+  Prop := ∀ ε > 0, ∃ N : ℕ, ∀ n≥N, |a n - L|<ε
+
 lemma map_id (l : List Nat) : l.map id = l := by
   induction l with
   | nil =>
