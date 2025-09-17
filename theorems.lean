@@ -117,6 +117,16 @@ lemma sum_append (l1 l2 : List Nat) : (l1 ++ l2).sum = l1.sum + l2.sum := by
 def seq_lim (a : ℕ→ℝ) (L : ℝ) :
   Prop := ∀ ε > 0, ∃ N : ℕ, ∀ n≥N, |a n - L|<ε
 
+lemma a_con (a : ℕ → ℝ) (L : ℝ) (a_const : ∀ (n : ℕ), a n = L) : seq_lim a L := by
+  change ∀ ε>0, ∃ (N : ℕ), ∀ n≥N, |a n - L|<ε
+  intro ε a_1
+  use 1
+  intro n n_b
+  specialize a_const n
+  rw [a_const]
+  norm_num
+  apply a_1
+
 lemma map_id (l : List Nat) : l.map id = l := by
   induction l with
   | nil =>
