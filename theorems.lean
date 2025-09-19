@@ -3,6 +3,7 @@ import Mathlib.Data.List.Basic
 import Mathlib.Tactic.Cases
 import Mathlib.Analysis.InnerProductSpace.Basic
 import Mathlib.Algebra.Group.Basic
+
 set_option diagnostics true
 
 example : ∀ x : ℝ, x^2 ≥ 0 := by
@@ -43,7 +44,7 @@ lemma add_zero_own(n : Nat) : n + 0 = n := by
   induction n with
   | zero => rfl
   | succ k ik =>
-    simp [Nat.add_zero, ik]
+    simp [Nat.add_zero]
 
 lemma even_plus_even_own (m n : Nat)
   (hm : m % 2 = 0) (hn : n % 2 = 0) :
