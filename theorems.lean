@@ -38,6 +38,7 @@ example (n : ℕ) : (1 : ℝ) ≤ 1.5^n := by
     have h : (1 : ℝ) ≤ 1.5 := by norm_num
     sorry
 -/
+
 lemma add_zero_own(n : Nat) : n + 0 = n := by
   induction n with
   | zero => rfl
