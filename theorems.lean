@@ -3,6 +3,12 @@ import Mathlib.Data.List.Basic
 import Mathlib.Tactic.Cases
 import Mathlib.Analysis.InnerProductSpace.Basic
 import Mathlib.Algebra.Group.Basic
+import Mathlib.Algebra.Order.Monoid.Canonical.Defs
+import Mathlib.Data.Real.Basic
+import Mathlib.Data.Int.Basic
+import Mathlib.Tactic.Basic
+import Mathlib.Tactic.Linarith
+import Mathlib.Algebra.Order.Archimedean.Basic
 
 set_option diagnostics true
 open Nat
@@ -26,8 +32,9 @@ theorem andImpliesOr {A B} : A ∧ B → A ∨ B :=
 
 theorem onePlusOneAndLessThan : 1 + 1 = 2 ∨ 3 < 5 := by decide
 
+def square {M : Type} [Monoid M] (x : M) : M := x * x
 
-
+#eval square 3      -- uses NatMonoid
 /-
 simp -- solves goals if the firn A=B or A ↔ B
 norm_num -- sovles goals like 1.5 < 1.7 with numbers
@@ -190,10 +197,13 @@ example (p q r : Prop) : ((p ∨ q) → r) ↔ ((p → r) ∧ (q → r)) := by
 -/
 example (x : ℕ) : x = x := by
   rfl
+
 example : Nat.succ (Nat.succ 4) = 6 := rfl
 
 example (x : ℕ) : x ≤ x := by
-  rw [Nat.le_iff_exists_add]
+  rw [le_iff_exists_add]
+  use 0
+  simp
 
 example (x y : ℕ) : x ≤ y ∨ y ≤ x := by
   induction x generalizing y with
