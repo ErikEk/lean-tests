@@ -24,7 +24,7 @@ theorem constant_function_is_continuous_at_a_point
   exact hεbigger0
 
 theorem linear_function_is_continuous_at_a_point
-  (D : Set ℝ) (m y0 : ℝ) (a : D) : IsContinuousAt D (fun x =>  m*x+y0) a := by
+  (D : Set ℝ) (m y0 : ℝ) (a : D) : IsContinuousAt D (fun x => m*x+y0) a := by
   by_cases m_cases : m = 0
   subst m
   simp only [zero_mul, zero_add]

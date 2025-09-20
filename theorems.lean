@@ -5,6 +5,7 @@ import Mathlib.Analysis.InnerProductSpace.Basic
 import Mathlib.Algebra.Group.Basic
 
 set_option diagnostics true
+open Nat
 
 example : ∀ x : ℝ, x^2 ≥ 0 := by
   intro x
@@ -187,6 +188,12 @@ example (p q r : Prop) : ((p ∨ q) → r) ↔ ((p → r) ∧ (q → r)) := by
 
     }
 -/
+example (x : ℕ) : x = x := by
+  rfl
+example : Nat.succ (Nat.succ 4) = 6 := rfl
+
+example (x : ℕ) : x ≤ x := by
+  rw [Nat.le_iff_exists_add]
 
 example (x y : ℕ) : x ≤ y ∨ y ≤ x := by
   induction x generalizing y with
