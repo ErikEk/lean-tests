@@ -1,1 +1,8 @@
 import Mathlib.Algebra.Lie.Basic
+
+variable (L M : Type) [LieRing L] [LieRing M]
+example : ∀ (x y z : L), ⁅x + y, z⁆ = ⁅x, z⁆ + ⁅y, z⁆ := by
+  apply add_lie
+
+example : ∀ (x : L), ⁅x, x⁆ = 0 := by
+  apply lie_self
