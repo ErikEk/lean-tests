@@ -9,6 +9,3 @@ example : ∀ (x : L), ⁅x, x⁆ = 0 := by
   apply lie_self
 example : ∀ (x y m : L), ⁅x, ⁅y, m⁆⁆ = ⁅⁅x, y⁆, m⁆ + ⁅y, ⁅x, m⁆⁆ := by
   apply leibniz_lie
-
-variable (h : ∀ (x y : L), ⁅x, ⁅y, x⁆⁆ + ⁅x, ⁅x, y⁆⁆ = 0)
-example (x y : L) : ∀ (x y : L), ⁅x, ⁅x, y⁆⁆ = 0 := by
