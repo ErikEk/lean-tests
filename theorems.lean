@@ -169,6 +169,7 @@ theorem and_imp_iff (P Q R : Prop) : (P ∧ Q → R) ↔ (P → Q → R) := by
     cases hpq with
     | intro hp hq => exact h hp hq
 
+
 /-
 example (p q r : Prop) : ((p ∨ q) → r) ↔ ((p → r) ∧ (q → r)) := by
     constructor
