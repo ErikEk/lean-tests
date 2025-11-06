@@ -127,6 +127,7 @@ lemma sum_append (l1 l2 : List Nat) : (l1 ++ l2).sum = l1.sum + l2.sum := by
 def seq_lim (a : ℕ→ℝ) (L : ℝ) :
   Prop := ∀ ε > 0, ∃ (N : ℕ), ∀ n≥N, |a n - L|<ε
 
+
 lemma const_converge (a : ℕ → ℝ) (L : ℝ)
   (a_const : ∀ (n : ℕ), a n = L) : seq_lim a L := by
   change ∀ ε>0, ∃ (N : ℕ), ∀ n≥N, |a n - L|<ε
