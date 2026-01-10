@@ -18,3 +18,10 @@ example (P Q : Prop) : (P → Q) → ¬Q → ¬P := by
   apply b
   apply a
   exact h3
+example (P Q : Prop) : (P ∧ ¬ P) → Q := by
+  unfold Not
+  intro a
+  cases a with
+  | intro hp hnp =>
+    exfalso
+    exact hnp hp
