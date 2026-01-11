@@ -1,5 +1,9 @@
 import Mathlib.Data.Int.Basic
 import Mathlib.Tactic.Basic
+import Mathlib.LinearAlgebra.FiniteDimensional.Basic
+
+variable (K : Type*) [Field K]
+variable (V : Type*) [AddCommGroup V] [Module K V]
 
 open Nat
 
@@ -25,3 +29,6 @@ example (P Q : Prop) : (P ∧ ¬ P) → Q := by
   | intro hp hnp =>
     exfalso
     exact hnp hp
+
+theorem zero_smul_v (w : V) : (0 : K) • w = (0 : V) := by
+  sorry
