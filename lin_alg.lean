@@ -31,4 +31,7 @@ example (P Q : Prop) : (P ∧ ¬ P) → Q := by
     exact hnp hp
 
 theorem zero_smul_v (w : V) : (0 : K) • w = (0 : V) := by
-  sorry
+  apply add_right_cancel (b := (0:K) •w)
+  rw [(add_smul (0:K) (0:K) w).symm]
+  rw [zero_add]
+  rw [zero_add]
