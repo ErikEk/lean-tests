@@ -34,3 +34,7 @@ theorem zero_smul_v (w : V) : (0 : K) • w = (0 : V) := by
   apply add_right_cancel (b := (0:K) •w)
   rw [(add_smul (0:K) (0:K) w).symm]
   rw [zero_add, zero_add]
+theorem smul_zero_v (a : K) : a • (0 : V) = (0 : V) := by
+  apply add_right_cancel (b := a•(0:V))
+  rw[(smul_add a (0:V) (0:V)).symm]
+  rw [zero_add, zero_add]
