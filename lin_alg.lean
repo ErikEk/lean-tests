@@ -44,3 +44,6 @@ theorem neg_one_smul_v (v : V) : (-1 : K) • v = -v := by
   rw [(add_smul (-1:K) (1:K) v).symm]
   rw [neg_add_cancel, neg_add_cancel]
   exact zero_smul K v
+theorem subspace_contains_zero {W : Set V} (W : Submodule K V) : (0 : V) ∈ W := by
+  have h1 : (0 : V) ∈ W := W.zero_mem
+  exact h1
