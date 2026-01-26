@@ -2,6 +2,7 @@ import Mathlib.Data.Int.Basic
 import Mathlib.Tactic.Basic
 import Mathlib.LinearAlgebra.FiniteDimensional.Basic
 import Mathlib.LinearAlgebra.Basis.Submodule
+import Mathlib.Data.Real.Basic
 
 open Submodule
 
@@ -49,5 +50,28 @@ theorem neg_one_smul_v (v : V) : (-1 : K) • v = -v := by
 theorem subspace_contains_zero {W : Set V} (W : Submodule K V) : (0 : V) ∈ W := by
   have h1 : (0 : V) ∈ W := W.zero_mem
   exact h1
-theorem span_mono {A B : Set V} (hAB : A ⊆ B) : (span K A : Set V) ⊆ (span K B : Set V) := by
-  sorry
+
+def is_linear_combination (S : Set V) (x : V) : Prop :=
+  ∃ (s : Finset V) (f : V→K), (↑s ⊆ S) ∧ (x = Finset.sum s (fun v => f v • v))
+
+variable {A : Set V}
+
+#check Submodule.span K A
+
+
+
+
+def VV : Type := ℝ × ℝ × ℝ
+def KK : Type := ℝ
+variable [Field KK] [AddCommGroup VV] [Module KK VV]
+
+def v1 : VV:= (1,0,0)
+def v2 : VV := (0,1,0)
+
+def AA : Set VV := {v1, v2}
+
+#check span KK AA
+-- Submodule KK VV
+
+#check (v1 ∈ span KK AA)   -- true
+#check ((0,0,1) ∈ span KK AA) -- false
