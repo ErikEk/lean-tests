@@ -1,10 +1,12 @@
 import Mathlib.Data.Int.Basic
 import Mathlib.Tactic.Basic
 import Mathlib.LinearAlgebra.FiniteDimensional.Basic
+import Mathlib.LinearAlgebra.Basis.Submodule
+
+open Submodule
 
 variable (K : Type*) [Field K]
 variable (V : Type*) [AddCommGroup V] [Module K V]
-
 open Nat
 
 example (x y : ℕ) (h : y = x + 7) : 2 * y = 2 * (x+7) := by
@@ -47,3 +49,5 @@ theorem neg_one_smul_v (v : V) : (-1 : K) • v = -v := by
 theorem subspace_contains_zero {W : Set V} (W : Submodule K V) : (0 : V) ∈ W := by
   have h1 : (0 : V) ∈ W := W.zero_mem
   exact h1
+theorem span_mono {A B : Set V} (hAB : A ⊆ B) : (span K A : Set V) ⊆ (span K B : Set V) := by
+  sorry
