@@ -47,7 +47,7 @@ theorem neg_one_smul_v (v : V) : (-1 : K) • v = -v := by
   rw [(add_smul (-1:K) (1:K) v).symm]
   rw [neg_add_cancel, neg_add_cancel]
   exact zero_smul K v
-theorem subspace_contains_zero {W : Set V} (W : Submodule K V) : (0 : V) ∈ W := by
+theorem subspace_contains_zero (W : Submodule K V) : (0 : V) ∈ W := by
   have h1 : (0 : V) ∈ W := W.zero_mem
   exact h1
 
@@ -75,4 +75,12 @@ def AA : Set VV := {v1, v2}
 
 #check (v1 ∈ span KK AA)   -- true
 #check ((0,0,1) ∈ span KK AA) -- false
+
+example : v1 ∈ span KK AA := by
+  apply Submodule.subset_span
+  simp [AA]
+
+example : (0,0,1) ∉ span KK AA := by
+  sorry --exact Submodule.subset_span (by simp [AA])
+
 #check @Submodule.span_le
