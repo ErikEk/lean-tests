@@ -75,3 +75,4 @@ def AA : Set VV := {v1, v2}
 
 #check (v1 ∈ span KK AA)   -- true
 #check ((0,0,1) ∈ span KK AA) -- false
+#check @Submodule.span_le
