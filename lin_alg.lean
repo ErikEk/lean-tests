@@ -54,9 +54,9 @@ theorem subspace_contains_zero (W : Submodule K V) : (0 : V) ∈ W := by
 def is_linear_combination (S : Set V) (x : V) : Prop :=
   ∃ (s : Finset V) (f : V→K), (↑s ⊆ S) ∧ (x = Finset.sum s (fun v => f v • v))
 
-variable {A : Set V}
+--variable {A : Set V}
 
-#check Submodule.span K A
+--#check Submodule.span K A
 
 
 
@@ -78,9 +78,10 @@ def AA : Set VV := {v1, v2}
 
 example : v1 ∈ span KK AA := by
   apply Submodule.subset_span
-  simp [AA]
+  dsimp [AA]
+  change v1 = v1 ∨ v1 = v2
+  left
+  rfl
 
-example : (0,0,1) ∉ span KK AA := by
-  sorry --exact Submodule.subset_span (by simp [AA])
 
 #check @Submodule.span_le
