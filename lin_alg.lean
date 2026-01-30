@@ -59,8 +59,6 @@ def is_linear_combination (S : Set V) (x : V) : Prop :=
 --#check Submodule.span K A
 
 
-
-
 def VV : Type := ℝ × ℝ × ℝ
 def KK : Type := ℝ
 variable [Field KK] [AddCommGroup VV] [Module KK VV]
@@ -76,8 +74,10 @@ def AA : Set VV := {v1, v2}
 #check (v1 ∈ span KK AA)   -- true
 #check ((0,0,1) ∈ span KK AA) -- false
 
+#print AA
 example : v1 ∈ span KK AA := by
   apply Submodule.subset_span
+  --simp? [AA]
   dsimp [AA]
   change v1 = v1 ∨ v1 = v2
   left
