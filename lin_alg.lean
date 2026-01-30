@@ -85,3 +85,13 @@ example : v1 ∈ span KK AA := by
 
 
 #check @Submodule.span_le
+
+def linear_independent_v (S : Set V) : Prop :=
+  ∀ (s : Finset V) (f : V → K),
+  (↑s ⊆ S) → (Finset.sum s (fun v ↦ f v • v) = 0) → (∀ v ∈ s, f v = 0)
+
+theorem linear_independence_empty : linear_independent_v K V (∅ : Set V) := by
+  unfold linear_independent_v
+  intro s f hs zero_sum v vh
+  exfalso
+  exact hs vh
