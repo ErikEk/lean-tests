@@ -83,7 +83,8 @@ example : v1 ∈ span KK AA := by
   left
   rfl
 
-
+#check @Finset.sum
+#check @Submodule.span
 #check @Submodule.span_le
 
 def linear_independent_v (S : Set V) : Prop :=
