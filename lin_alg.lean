@@ -3,6 +3,9 @@ import Mathlib.Tactic.Basic
 import Mathlib.LinearAlgebra.FiniteDimensional.Basic
 import Mathlib.LinearAlgebra.Basis.Submodule
 import Mathlib.Data.Real.Basic
+import Mathlib.LinearAlgebra.Basis.VectorSpace
+import Mathlib.Data.Complex.Basic
+import Mathlib.Analysis.InnerProductSpace.Basic
 
 open Submodule
 
@@ -96,3 +99,19 @@ theorem linear_independence_empty : linear_independent_v K V (∅ : Set V) := by
   intro s f hs zero_sum v vh
   exfalso
   exact hs vh
+
+#check ℂ
+#check (1 : ℂ)
+#check (Complex.I : ℂ)
+#check star
+
+class InnerProductSpace_v (V : Type) [AddCommGroup V] [Module ℂ V] where
+  inner : V → V → ℂ
+  inner_self_im_zero : ∀ (v : V), (inner v v).im = 0
+  inner_self_nonneg : ∀ (v : V), 0 ≤ (inner v v).re
+  inner_self_eq_zero : ∀ (v : V), inner v v = 0 ↔ v = 0
+  inner_add_left : ∀ (u v w : V), inner (u + v) w = inner u w + inner v w
+  inner_smul_left : ∀ (a : ℂ) (v w : V), inner (a • v) w = a * inner v w
+  inner_conj_symm :
+    ∀ v w : V,
+      inner v w = star (inner w v) -- Complex.conj was changed to star
