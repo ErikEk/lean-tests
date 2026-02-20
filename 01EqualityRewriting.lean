@@ -37,7 +37,9 @@ example (a b c : ℝ) : c * b * a = b * (a * c) := by
 
 -- 0002
 example (a b c : ℝ) : a * (b * c) = b * (a * c) := by
-  sorry
+  rw [mul_comm]
+  rw [mul_assoc]
+  nth_rw 2 [mul_comm]
 
 /-
 Now let's return to the preceding example to experiment with what happens
