@@ -50,7 +50,9 @@ Try to figure out what happens.
 -/
 -- 0003
 example (a b c : ℝ) : a * (b * c) = b * (a * c) := by
-  sorry
+  rw [← mul_assoc]
+  nth_rw 2 [mul_comm]
+  rw [mul_assoc]
 
 /-
 We can also perform rewriting in an assumption of the local context, using for instance
