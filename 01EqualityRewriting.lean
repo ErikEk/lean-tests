@@ -109,7 +109,12 @@ Let's return to the other example using this method.
 -/
 -- 0005
 example (a b c d : ℝ) (hyp : c = b * a - d) (hyp' : d = a * b) : c = 0 := by
-  sorry
+  {
+    rw [mul_comm] at hyp'
+    rw [hyp'] at hyp
+    rw [sub_self] at hyp
+    exact hyp
+  }
 
 /-
 The preceding proofs have exhausted our supply of "mul_comm" patience. Now it's time
