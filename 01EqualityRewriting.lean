@@ -155,6 +155,6 @@ We could use:
 -/
 -- 0008
 example (a b : ℝ) : (a + b) * (a - b) = a ^ 2 - b ^ 2 := by
-
+  ring
 
 -- Let's stick to ring in the end.
