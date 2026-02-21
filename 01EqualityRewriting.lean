@@ -155,6 +155,9 @@ We could use:
 -/
 -- 0008
 example (a b : ℝ) : (a + b) * (a - b) = a ^ 2 - b ^ 2 := by
+  rw [pow_two, pow_two]
+  rw [mul_sub]
+  rw [add_mul, add_mul]
   ring
 
 -- Let's stick to ring in the end.
