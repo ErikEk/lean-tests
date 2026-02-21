@@ -1,5 +1,5 @@
 import Mathlib.Data.Real.Basic
-
+import Mathlib.Tactic.Ring
 /-
 One of the earliest kind of proofs one encounters while learning mathematics is proving by
 a calculation. It may not sound like a proof, but this is actually using lemmas expressing
@@ -134,14 +134,14 @@ Of course we can use `ring` outside of `calc`. Let's do the next one in one line
 -/
 -- 0006
 example (a b c : ℝ) : a * (b * c) = b * (a * c) := by
-  sorry
+  ring
 
 /-
 This is too much fun. Let's do it again.
 -/
 -- 0007
 example (a b : ℝ) : a + b + a = 2 * a + b := by
-  sorry
+  ring
 
 /-
 Maybe this is cheating. Let's try to do the next computation without ring.
@@ -155,6 +155,6 @@ We could use:
 -/
 -- 0008
 example (a b : ℝ) : (a + b) * (a - b) = a ^ 2 - b ^ 2 := by
-  sorry
+
 
 -- Let's stick to ring in the end.
