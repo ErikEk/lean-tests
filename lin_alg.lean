@@ -115,11 +115,3 @@ class InnerProductSpace_v (V : Type) [AddCommGroup V] [Module ℂ V] where
   inner_conj_symm :
     ∀ v w : V,
       inner v w = star (inner w v) -- Complex.conj was changed to star
-
-variable {𝕜 V : Type*}
-variable [IsROrC 𝕜]
-variable [InnerProductSpace 𝕜 V]
-
-example (v : V) : 0 ≤ ‖v‖ :=
-by
-  exact norm_nonneg v
