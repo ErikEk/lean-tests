@@ -23,8 +23,10 @@ the statement becomes available under the name `my_name`.
 -/
 
 example {a b c : ℝ} (hab : a ≤ b) : c + a ≤ c + b := by
-  #find _+ _ ≤ _+ _
+  #find _ + _ ≤ _ + _
+  exact add_le_add_right hab c
 
+example {a b c : ℝ} (hab : a ≤ b) : c + a ≤ c + b := by
   rw [← sub_nonneg]
   have key : c + b - (c + a) = b - a :=  by-- Here we introduce an intermediate statement named key
     -- and prove it in an idented code block (or on the same line if the proof is very short)
