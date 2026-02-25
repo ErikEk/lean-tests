@@ -23,10 +23,6 @@ the statement becomes available under the name `my_name`.
 -/
 
 example {a b c : ℝ} (hab : a ≤ b) : c + a ≤ c + b := by
-  #find _ + _ ≤ _ + _
-  exact add_le_add_right hab c
-
-example {a b c : ℝ} (hab : a ≤ b) : c + a ≤ c + b := by
   rw [← sub_nonneg]
   have key : c + b - (c + a) = b - a :=  by-- Here we introduce an intermediate statement named key
     -- and prove it in an idented code block (or on the same line if the proof is very short)
@@ -44,7 +40,12 @@ since this would spoil our fun).
 -/
 -- 0009
 example {a b : ℝ} (hab : a ≤ b) (c : ℝ) : a + c ≤ b + c := by
-  sorry
+  rw [←sub_nonneg]
+  have key : b + c - (a + c) = b - a := by
+    ring
+  rw [key]
+  rw [sub_nonneg]
+  exact hab
 
 /-
 Let's see how we could use this lemma. It is already in the core library, under the name `add_le_add_right`:
