@@ -62,8 +62,7 @@ So it will be sufficient to feed `hab` and `c` to this function.
 example {a b : ℝ} (ha : 0 ≤ a) : b ≤ a + b := by
   calc
     b = 0 + b := by ring
-    _ ≤ a + b := by exact add_le_add_right ha b
-
+    _ ≤ a + b := by exact add_le_add_left ha b
 
 /-
 In the second line of the above proof, we need to prove `0 + b ≤ a + b`.
@@ -75,13 +74,15 @@ tactics entirely, and write:
 example (a b : ℝ) (ha : 0 ≤ a) : b ≤ a + b := by
   calc
     b = 0 + b := by ring
-    _ ≤ a + b := add_le_add_right ha b
+    _ ≤ a + b := add_le_add_left ha b
 
 
 -- Let's do a variant.
 -- 0010
 example (a b : ℝ) (hb : 0 ≤ b) : a ≤ a + b := by
-  sorry
+  calc
+    a = a + 0 := by ring
+    _ ≤ a + b := add_le_add_right hb a
 
 /-
 The two preceding examples are in the core library :
@@ -106,7 +107,13 @@ the pieces.
 -/
 -- 0011
 example (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) : 0 ≤ a + b := by
-  sorry
+  calc
+    0 ≤ a := ha
+    _ ≤ a + b := le_add_of_nonneg_right hb
+    -- or
+    --0 = 0 + 0 := by ring
+    --_ ≤ a + b := add_le_add ha hb
+
 
 -- And let's combine with our earlier lemmas.
 -- 0012
