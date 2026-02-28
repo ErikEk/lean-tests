@@ -108,8 +108,9 @@ the pieces.
 -- 0011
 example (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) : 0 ≤ a + b := by
   calc
-    0 ≤ a := ha
+    0 ≤ a := by exact ha
     _ ≤ a + b := le_add_of_nonneg_right hb
+
     -- or
     --0 = 0 + 0 := by ring
     --_ ≤ a + b := add_le_add ha hb
@@ -118,7 +119,9 @@ example (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) : 0 ≤ a + b := by
 -- And let's combine with our earlier lemmas.
 -- 0012
 example (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a + c ≤ b + d := by
-  sorry
+  calc
+    a + c ≤ b + c := add_le_add_left hab c
+    _ ≤ b + d := add_le_add_right hcd b
 
 /-
 In the above examples, we prepared proofs of assumptions of our lemmas beforehand, so
