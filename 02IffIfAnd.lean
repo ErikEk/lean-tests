@@ -154,15 +154,16 @@ proving it by working with known facts, moving forward.
 -/
 example (a b c : ℝ) (hc : 0 ≤ c) (hab : a ≤ b) : a * c ≤ b * c := by
   have hab' : 0 ≤ b - a := by
-    rw [← sub_nonneg] at hab
-    exact hab
-  have h₁ : 0 ≤ (b - a) * c := mul_nonneg hab' hc
-  have h₂ : (b - a) * c = b * c - a * c := by ring
-  have h₃ : 0 ≤ b * c - a * c := by
-    rw [h₂] at h₁
-    exact h₁
-  rw [sub_nonneg] at h₃
-  exact h₃
+    rw [←sub_nonneg] at hab
+    assumption
+  rw [←sub_nonneg]
+  have h_1 : 0 ≤ (b - a) * c := mul_nonneg hab' hc
+  have h_2 : b * c - (a * c) = (b - a) * c:= by
+    ring
+  have h_3 : 0 ≤ b * c - a * c := by
+    rw [h_2]
+    exact h_1
+  exact h_3
 
 /-
 One reason why the backward reasoning proof is shorter is because Lean can
