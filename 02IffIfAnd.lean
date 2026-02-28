@@ -138,17 +138,15 @@ Let's do that using the lemma
   `mul_nonneg {x y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y) : 0 ≤ x*y`
 -/
 example (a b c : ℝ) (hc : 0 ≤ c) (hab : a ≤ b) : a * c ≤ b * c := by
-  rw [← sub_nonneg]
-  have key : b * c - a * c = (b - a) * c := by ring
-  rw [key]
+  rw [←sub_nonneg]
+  have raw : b * c - (a * c) = (b - a)*c := by ring
+  rw [raw]
   apply mul_nonneg
-  -- Here we don't provide proofs for the lemma's assumptions
-  -- Now we need to provide the proofs.
-  -- There are now two things to prove. We use the center dot (typed using `\.`) to
-  -- focus on the current first goal.
-  · rw [sub_nonneg]
+  · -- Case 1
+    rw[sub_nonneg]
     exact hab
-  · exact hc
+  · -- Case 2
+    exact hc
 
 /-
 Let's prove the same statement using only forward reasoning: announcing stuff,
