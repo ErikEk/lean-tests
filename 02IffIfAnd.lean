@@ -161,8 +161,8 @@ example (a b c : ℝ) (hc : 0 ≤ c) (hab : a ≤ b) : a * c ≤ b * c := by
   have h_2 : b * c - (a * c) = (b - a) * c:= by
     ring
   have h_3 : 0 ≤ b * c - a * c := by
-    rw [h_2]
-    exact h_1
+    rw [←h_2] at h_1
+    assumption
   exact h_3
 
 /-
@@ -205,12 +205,22 @@ Let's now practice all three styles using:
 -- First using mostly backward reasoning
 -- 0013
 example (a b c : ℝ) (hc : c ≤ 0) (hab : a ≤ b) : b * c ≤ a * c := by
-  sorry
+  rw [← sub_nonneg]
+  have h1 : a * c - b * c = (a - b) * c := by ring
+  rw [h1]
+  apply mul_nonneg_of_nonpos_of_nonpos
+  · rw [sub_nonpos]
+    exact hab
+  · exact hc
 
 -- Using forward reasoning
 -- 0014
 example (a b c : ℝ) (hc : c ≤ 0) (hab : a ≤ b) : b * c ≤ a * c := by
-  sorry
+  have hg : a - b ≤ 0 := by rwa [←sub_nonpos] at hab
+  have h1 : 0 ≤ (a - b) * c := mul_nonneg_of_nonpos_of_nonpos hg hc
+  have h2 : (a - b) * c = a * c - b * c := by ring
+  have h3 : 0 ≤ a * c - b * c := by rwa [h2] at h1
+  rwa [sub_nonneg] at h3
 
 -- 0015
 /-- Using a combination of both, with a `calc` block -/
