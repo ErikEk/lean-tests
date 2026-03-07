@@ -225,7 +225,10 @@ example (a b c : ℝ) (hc : c ≤ 0) (hab : a ≤ b) : b * c ≤ a * c := by
 -- 0015
 /-- Using a combination of both, with a `calc` block -/
 example (a b c : ℝ) (hc : c ≤ 0) (hab : a ≤ b) : b * c ≤ a * c := by
-  sorry
+  rw [←sub_nonneg]
+  calc
+    0 ≤ (a - b) * c := mul_nonneg_of_nonpos_of_nonpos (by rwa [sub_nonpos]) hc
+    _ = a * c - b * c := by ring
 
 /-
 Let's now move to proving implications. Lean denotes implications using
