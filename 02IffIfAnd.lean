@@ -266,7 +266,8 @@ tactic mode using `by`.
 Let's practise using `intro`. -/
 -- 0016
 example (a b : ℝ) : 0 ≤ b → a ≤ a + b := by
-  sorry
+  intro ha
+  exact le_add_of_nonneg_right ha
 
 /-
 What about lemmas having more than one assumption? For instance:
@@ -278,8 +279,8 @@ by ∧. Assumptions built using this operator can be decomposed using the `rcase
 which is a very general assumption-decomposing tactic.
 -/
 example {a b : ℝ} : 0 ≤ a ∧ 0 ≤ b → 0 ≤ a + b := by
-  intro hyp
-  rcases hyp with ⟨ha, hb⟩
+  intro hab
+  rcases hab with ⟨ha, hb⟩
   exact add_nonneg ha hb
 
 /-
@@ -300,8 +301,7 @@ to know how to prove a conjunction. The `constructor` tactic creates two goals f
 It can also be used to create two implication goals from an equivalence goal.
 -/
 example {a b : ℝ} (H : 0 ≤ a ∧ 0 ≤ b → 0 ≤ a + b) : 0 ≤ a → 0 ≤ b → 0 ≤ a + b := by
-  intro ha
-  intro hb
+  intros ha hb
   apply H
   constructor
   exact ha
@@ -313,7 +313,12 @@ unspecified mathematical statements.
 -/
 -- 0017
 example (P Q : Prop) : P ∧ Q → Q ∧ P := by
-  sorry
+  intro hqp
+  constructor
+  rcases hqp with ⟨hp, hq⟩
+  exact hq
+  rcases hqp with ⟨hp, hq⟩
+  exact hp
 
 /-
 Of course using `constructor` only to be able to use `exact` twice in a row feels silly. One can
