@@ -354,7 +354,16 @@ an equivalence into two implications.
 -/
 -- 0019
 example (P Q R : Prop) : P ∧ Q → R ↔ P → Q → R := by
-  sorry
+  constructor
+  intro hpq
+  intro hp
+  intro hq
+  exact hpq ⟨hp, hq⟩
+  intro hpqr
+  intro pq
+  apply hpqr
+  exact pq.1
+  exact pq.2
 
 /-
 If you used more than five lines in the above exercise then try to compress things
