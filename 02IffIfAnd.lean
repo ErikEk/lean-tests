@@ -1,5 +1,6 @@
 import Mathlib.Data.Real.Basic
 import Mathlib.Tactic.Ring
+import Mathlib.Tactic.Linarith
 /-
 In the previous file, we saw how to rewrite using equalities.
 The analogue operation with mathematical statements is rewriting using
@@ -389,12 +390,12 @@ Now let's enjoy this for a while.
 -/
 -- 0020
 example (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) : 0 ≤ a + b := by
-  sorry
+  linarith
 
 -- And let's combine with our earlier lemmas.
 -- 0021
 example (a b c d : ℝ) (hab : a ≤ b) (hcd : c ≤ d) : a + c ≤ b + d := by
-  sorry
+  linarith
 
 /-
 Final exercise
@@ -417,4 +418,12 @@ open Nat
 
 -- 0022
 example (a b : ℕ) : a ∣ b ↔ gcd a b = a := by
-  sorry
+  have fact : gcd a b ∣ a ∧ gcd a b ∣ b := by rw [←dvd_gcd_iff]
+  constructor
+  · intro ha
+    apply dvd_antisymm fact.left
+    rw [dvd_gcd_iff]
+    exact ⟨dvd_refl a, ha⟩
+  · intro hab
+    rw [←hab]
+    exact fact.right
