@@ -344,7 +344,8 @@ by
 Now redo the previous exercise using all those compressing techniques, in exactly two lines. -/
 -- 0018
 example (P Q : Prop) : P ∧ Q → Q ∧ P := by
-  sorry
+  intro ⟨hp, hq⟩
+  exact ⟨hq, hp⟩
 
 /-
 We are ready to come back to the equivalence between the different formulations of
