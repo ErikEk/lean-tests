@@ -1,5 +1,16 @@
 import Tutorials.TutoLib
 
+class MyAdd (α : Type) where
+  add : α → α → α
+instance : MyAdd Nat where
+  add := Nat.add
+def add_twice {α : Type} [MyAdd α] (a b : α) :=
+  MyAdd.add a b
+#eval MyAdd.add 3 3
+
+class AddCommGroupTemp (α : Type) extends AddGroup α where
+  add_comm : ∀ a b : α, a + b = b + a
+#check AddCommGroup ℝ
 /-
 In this file, we'll learn about the `∀` quantifier, and the disjunction
 operator `∨` (logical OR).
