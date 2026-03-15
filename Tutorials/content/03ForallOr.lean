@@ -108,8 +108,13 @@ you can put your mouse cursor above the symbol and wait for one second.
 -/
 -- 0023
 example (f g : ℝ → ℝ) : EvenFun f → EvenFun (g ∘ f) := by
-  sorry
-
+  intro hf
+  unfold EvenFun
+  intro x
+  unfold EvenFun at hf
+  calc
+    (g ∘ f) (-x) = g (f (-x)) := rfl
+    _ = g (f (x)) := by rw [hf]
 -- 0024
 example (f g : ℝ → ℝ) : OddFun f → OddFun g → OddFun (g ∘ f) := by
   sorry
