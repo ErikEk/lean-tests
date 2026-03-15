@@ -117,7 +117,14 @@ example (f g : ℝ → ℝ) : EvenFun f → EvenFun (g ∘ f) := by
     _ = g (f (x)) := by rw [hf]
 -- 0024
 example (f g : ℝ → ℝ) : OddFun f → OddFun g → OddFun (g ∘ f) := by
-  sorry
+  intro hf hgf
+  unfold OddFun
+  intro x
+  unfold OddFun at hf hgf
+  calc
+    (g ∘ f) (-x) = g (f (-x)) := rfl
+    _ = g (-f (x)) := by rw[hf]
+    _ = -g (f (x)) := by rw [hgf]
 
 /-
 Let's have more quantifiers, and play with forward and backward reasoning.
