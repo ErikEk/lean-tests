@@ -140,12 +140,14 @@ In the next definitions, note how `∀ x₁, ∀ x₂` is abreviated to `∀ x�
 
 -- Let's be very explicit and use forward reasoning first.
 example (f g : ℝ → ℝ) (hf : NonDecreasing f) (hg : NonDecreasing g) : NonDecreasing (g ∘ f) := by
-  -- Let x₁ and x₂ be real numbers such that x₁ ≤ x₂
-  intro x₁ x₂ h
-  -- Since f is non-decreasing, f x₁ ≤ f x₂.
-  have step₁ : f x₁ ≤ f x₂ := hf x₁ x₂ h
-  -- Since g is non-decreasing, we then get g (f x₁) ≤ g (f x₂).
-  exact hg (f x₁) (f x₂) step₁
+  intro x_1 x_2 h12
+  unfold NonDecreasing at hf
+  unfold NonDecreasing at hg
+  have hgfx_1 : (g∘ f) x_1 = g (f (x_1)) := by rfl
+  have hgfx_2 : (g∘ f) x_2 = g (f (x_2)) := by rfl
+  rw [hgfx_1, hgfx_2]
+  specialize hf x_1 x_2 h12
+  exact hg (f x_1) (f x_2) hf
 
 /-
 In the above proof, note how inconvenient it is to specify x₁ and x₂ in `hf x₁ x₂ h` since
