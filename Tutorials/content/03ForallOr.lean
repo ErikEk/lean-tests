@@ -229,18 +229,18 @@ easy computations or inequalities, as well as one lemma:
   `mul_eq_zero : a*b = 0 ↔ a = 0 ∨ b = 0`
 -/
 example (a b : ℝ) : a = a * b → a = 0 ∨ b = 1 := by
-  intro hyp
-  have H : a * (1 - b) = 0 := by
+  intro h
+  have H : a*(b-1) = 0 := by
     calc
-      a * (1 - b) = a - a * b := by ring
+      a * (b-1) = a*b - a := by ring
       _ = 0 := by linarith
-
   rw [mul_eq_zero] at H
-  rcases H with Ha | Hb
+  rcases H with hP | hQ
   · left
-    exact Ha
+    exact hP
   · right
-    linarith
+    have hb : b=1 := by linarith
+    exact hb
 
 -- 0026
 example (x y : ℝ) : x ^ 2 = y ^ 2 → x = y ∨ x = -y := by
