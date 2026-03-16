@@ -202,7 +202,10 @@ example (f g : ℝ → ℝ) (hf : NonDecreasing f) (hg : NonDecreasing g) : NonD
 
 -- 0025
 example (f g : ℝ → ℝ) (hf : NonDecreasing f) (hg : NonIncreasing g) : NonIncreasing (g ∘ f) := by
-  sorry
+  intro x_1 x_2 h
+  apply hg
+  apply hf
+  exact h
 
 /- # Disjunctions
 
