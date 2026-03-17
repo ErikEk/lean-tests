@@ -1,4 +1,5 @@
 import Tutorials.TutoLib
+import Mathlib.Data.Real.Basic
 
 class MyAdd (α : Type) where
   add : α → α → α
@@ -265,7 +266,15 @@ In the next exercise, we can use:
 -/
 -- 0027
 example (f : ℝ → ℝ) : NonDecreasing f ↔ ∀ x y, x < y → f x ≤ f y := by
-  sorry
+  constructor
+  · intro h x y hxy
+    unfold NonDecreasing at h
+    exact h x y (le_of_lt hxy)
+  · intro h x y hxy
+    have cref : x = y ∨ x < y := eq_or_lt_of_le hxy
+    rcases cref with hP | hQ
+    · rw [hP]
+    · exact h x y hQ
 
 /-
 In the next exercise, we can use:
