@@ -244,7 +244,20 @@ example (a b : ℝ) : a = a * b → a = 0 ∨ b = 1 := by
 
 -- 0026
 example (x y : ℝ) : x ^ 2 = y ^ 2 → x = y ∨ x = -y := by
-  sorry
+  intro h
+  have hxy : (x-y) * (x+y) = 0 := by
+    calc
+      (x-y) * (x+y) = x^2-y^2 := by ring
+      _ = y^2 - y^2 := by rw [h]
+      _ = 0 := by ring
+  rw [mul_eq_zero] at hxy
+  rcases hxy with hP | hQ
+  · left
+    have hxeq : x=y := by linarith
+    exact hxeq
+  · right
+    have hxneqy : x=-y := by linarith
+    exact hxneqy
 
 /-
 In the next exercise, we can use:
