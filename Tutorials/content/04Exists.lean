@@ -46,8 +46,8 @@ example (h_1 : a ∣ b) (h_2 : b ∣ c) : a ∣ c := by
   rcases h_2 with ⟨hb, hbb⟩
   use ha * hb
   calc
-    c = b* hb := hbb
-    _ = a * ha * hb := by rw [haa]
+    c = b * hb := hbb
+    _ = a * ha * hb := by rw[haa]
     _ = a * (ha * hb) := by ring
 
 /-
@@ -60,10 +60,12 @@ The tactic `rcases` allows us to simplify the above combo when the
 name `hx` is replaced by the special name `rfl`, as in the following example.
 -/
 example (h1 : a ∣ b) (h2 : a ∣ c) : a ∣ b + c := by
-  rcases h1 with ⟨k, rfl⟩
-  rcases h2 with ⟨l, rfl⟩
-  use k + l
-  ring
+  rcases h1 with ⟨ha, haa⟩
+  rcases h2 with ⟨hb, hbb⟩
+  use ha+hb
+  calc
+    b + c = a * ha + a * hb := by rw[haa, hbb]
+    _ = a * (ha + hb) := by ring
 
 /-
 You can use the same `rfl` trick with the `rintro` tactic which
