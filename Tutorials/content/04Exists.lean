@@ -25,12 +25,9 @@ Again `h` can come straight from the local context or can be a more
 complicated expression.
 -/
 example (n : ℕ) (h : ∃ k : ℕ, n = k + 1) : n > 0 := by
-  -- Let's fix k₀ such that n = k₀ + 1.
-  rcases h with ⟨k₀, hk₀⟩
-  -- It now suffices to prove k₀ + 1 > 0.
-  rw [hk₀]
-  -- and we have a lemma about this
-  exact Nat.succ_pos k₀
+  rcases h with ⟨hk0, hk⟩
+  rw [hk]
+  exact Nat.succ_pos hk0
 
 /-
 The next exercises use divisibility in ℤ (beware the ∣ symbol which is
@@ -44,8 +41,14 @@ By definition, a ∣ b ↔ ∃ k, b = a*k, so you can prove a ∣ b using the
 variable (a b c : ℤ)
 
 -- 0029
-example (h₁ : a ∣ b) (h₂ : b ∣ c) : a ∣ c := by
-  sorry
+example (h_1 : a ∣ b) (h_2 : b ∣ c) : a ∣ c := by
+  rcases h_1 with ⟨ha, haa⟩
+  rcases h_2 with ⟨hb, hbb⟩
+  use ha * hb
+  calc
+    c = b* hb := hbb
+    _ = a * ha * hb := by rw [haa]
+    _ = a * (ha * hb) := by ring
 
 /-
 A very common pattern is to have an assumption or lemma asserting
