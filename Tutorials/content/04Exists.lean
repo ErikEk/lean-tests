@@ -78,7 +78,11 @@ example : a ∣ b → a ∣ c → a ∣ b + c := by
 
 -- 0030
 example : 0 ∣ a ↔ a = 0 := by
-  sorry
+  constructor
+  · rintro ⟨hk, rfl⟩
+    ring
+  · intro h
+    rw [h]
 
 /-
 We can now start combining quantifiers, using the definition
@@ -94,7 +98,12 @@ variable (f g : ℝ → ℝ)
 
 -- 0031
 example (h : Surjective (g ∘ f)) : Surjective g := by
-  sorry
+  unfold Surjective
+  unfold Surjective at h
+  intro b
+  rcases h b with ⟨w, rfl⟩
+  use f w
+  rfl
 
 /-
 The above exercise can be done in three lines. Try to do the
