@@ -282,4 +282,14 @@ In the next exercise, we can use:
 -/
 -- 0028
 example (f : ℝ → ℝ) (h : NonDecreasing f) (h' : ∀ x, f (f x) = x) : ∀ x, f x = x := by
-  sorry
+  unfold NonDecreasing at h
+  intro x
+  specialize h' x
+  have hxy : f x≤x ∨ x≤f x := le_total (f x) x
+  rcases hxy with hP | hQ
+  · have hff : f (f x) ≤ f x := h (f x) x hP
+    rw [h'] at hff
+    exact le_antisymm hP hff
+  · have hff : f x ≤ f (f x) := h x (f x) hQ
+    rw [h'] at hff
+    exact le_antisymm hff hQ
