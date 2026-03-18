@@ -111,4 +111,11 @@ next exercise in four lines.
 -/
 -- 0032
 example (hf : Surjective f) (hg : Surjective g) : Surjective (g ∘ f) := by
-  sorry
+  unfold Surjective
+  unfold Surjective at hf
+  unfold Surjective at hg
+  intro z
+  rcases hg z with ⟨y, rfl⟩
+  rcases hf y with ⟨x, rfl⟩
+  use x
+  rfl
