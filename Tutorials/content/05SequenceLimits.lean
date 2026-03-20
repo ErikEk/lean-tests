@@ -56,7 +56,14 @@ variable (u v w : ℕ → ℝ) (l l' : ℝ)
 -- If u is constant with value l then u tends to l
 -- 0033
 example : (∀ n, u n = l) → SeqLimit u l := by
-  sorry
+  intro h
+  unfold SeqLimit
+  intro ε hε
+  use 1
+  intro n hn
+  rw [h]
+  norm_num
+  linarith
 
 /- When dealing with absolute values, we'll use lemmas:
 
