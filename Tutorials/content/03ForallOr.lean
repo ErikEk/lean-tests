@@ -162,6 +162,7 @@ use the `specialize` tactic to replace hf by its specialization to the relevant 
  -/
 example (f g : ℝ → ℝ) (hf : NonDecreasing f) (hg : NonDecreasing g) : NonDecreasing (g ∘ f) := by
   intro x_1 x_2 h12
+  unfold NonDecreasing at hf
   specialize hf x_1 x_2 h12
   unfold NonDecreasing at hg
   exact hg (f x_1) (f x_2) hf

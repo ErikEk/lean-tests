@@ -69,7 +69,7 @@ example : (∀ n, u n = l) → SeqLimit u l := by
 
 `abs_le {x y : ℝ} : |x| ≤ y ↔ -y ≤ x ∧ x ≤ y`
 
-`abs_add (x y : ℝ) : |x + y| ≤ |x| + |y|`
+`abs_add_le (x y : ℝ) : |x + y| ≤ |x| + |y|`
 
 `abs_sub_comm (x y : ℝ) : |x - y| = |y - x|`
 
@@ -79,7 +79,15 @@ hand since they are used in many exercises.
 -- Assume l > 0. Then u tends to l implies u n ≥ l/2 for large enough n
 -- 0034
 example (hl : l > 0) : SeqLimit u l → ∃ N, ∀ n ≥ N, u n ≥ l / 2 := by
-  sorry
+  unfold SeqLimit
+  intro h
+  have hεpos : l/2 > 0 := by linarith
+  rcases h (l/2) hεpos with ⟨N, hN⟩
+  use N
+  intro n hn
+  specialize hN n hn
+  rw [abs_le] at hN
+  linarith
 
 /-
 When dealing with max, you can use
