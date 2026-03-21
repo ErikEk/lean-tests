@@ -106,7 +106,10 @@ Let's see an example.
 
 -- If u tends to l and v tends l' then u+v tends to l+l'
 example (hu : SeqLimit u l) (hv : SeqLimit v l') : SeqLimit (u + v) (l + l') := by
+  unfold SeqLimit
   intro ε ε_pos
+  unfold SeqLimit at hu
+  unfold SeqLimit at hv
   rcases hu (ε / 2) (by linarith) with ⟨N₁, hN₁⟩
   rcases hv (ε / 2) (by linarith) with ⟨N₂, hN₂⟩
   use max N₁ N₂
