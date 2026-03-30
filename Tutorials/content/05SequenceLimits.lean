@@ -151,7 +151,7 @@ example (hu : SeqLimit u l) (hw : SeqLimit w l) (h : ∀ n, u n ≤ v n) (h' : �
     SeqLimit v l := by
   sorry
 
--- What about < ε?
+-- What about < ε
 -- 0036
 example (u l) : SeqLimit u l ↔ ∀ ε > 0, ∃ N, ∀ n ≥ N, |u n - l| < ε := by
   sorry
