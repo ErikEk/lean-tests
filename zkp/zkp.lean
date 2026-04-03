@@ -17,7 +17,7 @@ def RRel (w x : Nat) : Prop :=
 structure Commitment where
   t : Nat
 deriving Repr
-
+#eval repr (Commitment.mk 1)
 structure Challenge where
   c : Nat
 deriving Repr
