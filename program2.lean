@@ -15,6 +15,9 @@ theorem add_zero_2 (n : ℕ) : n + 0 = n :=
 example (x : ℕ) := add_zero_2 x
 
 #check Nat.succ_eq_add_one 2
+#check Nat.add_succ 1 2
+#check Nat.add_comm 2 1
+
 example :  Nat.add 2 2 = 4 := by
   unfold Nat.add
   unfold Nat.add
