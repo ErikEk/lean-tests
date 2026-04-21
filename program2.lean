@@ -17,7 +17,8 @@ example (x : ℕ) := add_zero_2 x
 #check Nat.succ_eq_add_one 2
 #check Nat.add_succ 1 2
 #check Nat.add_comm 2 1
-
+#check Nat.succ (Nat.succ 0:Nat)
+#eval Nat.succ (Nat.succ 0)
 example :  Nat.add 2 2 = 4 := by
   unfold Nat.add Nat.add Nat.add
   have h : Nat.succ 2 = 3 := by

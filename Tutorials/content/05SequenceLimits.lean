@@ -149,7 +149,30 @@ example (hu : SeqLimit u l) (hv : SeqLimit v l') : SeqLimit (u + v) (l + l') := 
 -- 0035
 example (hu : SeqLimit u l) (hw : SeqLimit w l) (h : ∀ n, u n ≤ v n) (h' : ∀ n, v n ≤ w n) :
     SeqLimit v l := by
-  sorry
+  unfold SeqLimit
+  intro ε ε_pos
+  rcases hu (ε/2) (by linarith) with ⟨N₁, hN₁⟩
+  rcases hw (ε/2) (by linarith) with ⟨N₂, hN₂⟩
+  use max N₁ N₂
+  intro n
+  intro hnmax
+  rw [ge_max_iff] at hnmax
+  specialize hN₁ n
+  specialize hN₂ n
+  have hN₁_new : |u n - l| ≤ ε / 2 := hN₁ hnmax.1
+  have hN₂_new : |w n - l| ≤ ε / 2 := hN₂ hnmax.2
+  specialize h n
+  specialize h' n
+  rw [abs_le] at *
+  constructor
+  calc
+    -ε ≤ u n - l := (by linarith)
+    _ ≤ v n - l := (by linarith)
+
+  calc
+    v n - l ≤ w n - l := (by linarith)
+    _ ≤ ε := (by linarith)
+
 
 -- What about < ε
 -- 0036
