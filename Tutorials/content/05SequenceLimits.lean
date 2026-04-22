@@ -154,8 +154,7 @@ example (hu : SeqLimit u l) (hw : SeqLimit w l) (h : ∀ n, u n ≤ v n) (h' : �
   rcases hu (ε/2) (by linarith) with ⟨N₁, hN₁⟩
   rcases hw (ε/2) (by linarith) with ⟨N₂, hN₂⟩
   use max N₁ N₂
-  intro n
-  intro hnmax
+  intro n hnmax
   rw [ge_max_iff] at hnmax
   specialize hN₁ n
   specialize hN₂ n
@@ -177,7 +176,23 @@ example (hu : SeqLimit u l) (hw : SeqLimit w l) (h : ∀ n, u n ≤ v n) (h' : �
 -- What about < ε
 -- 0036
 example (u l) : SeqLimit u l ↔ ∀ ε > 0, ∃ N, ∀ n ≥ N, |u n - l| < ε := by
-  sorry
+  unfold SeqLimit
+  constructor
+  intro h ε hε
+  rcases h (ε/2) (by linarith) with ⟨N, hN⟩
+  use N
+  intro n hNN
+  calc
+    |u n - l| ≤ ε / 2 := hN n hNN
+    _ < ε := by linarith
+
+  intro h ε hε
+  rcases h ε hε with ⟨N, hN⟩
+  use N
+  intro n hNN
+  specialize hN n hNN
+  linarith
+
 
 /- In the next exercise, we'll use
 
