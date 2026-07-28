@@ -200,9 +200,8 @@ example (u l) : SeqLimit u l ↔ ∀ ε > 0, ∃ N, ∀ n ≥ N, |u n - l| < ε 
 -/
 -- A sequence admits at most one limit
 -- 0037
-example : SeqLimit u l → SeqLimit u l' → l = l' := by
-  sorry
-
+/-example : SeqLimit u l → SeqLimit u l' → l = l' := by
+-/
 /-
 Let's now practice deciphering definitions before proving.
 
