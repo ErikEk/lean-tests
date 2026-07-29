@@ -23,6 +23,11 @@ def add_32 (a b : CInt32) : CInt32 := a + b
 
 def x : CInt32 := ⟨5⟩
 #eval add_32 x x
+#eval (⟨3⟩ : CInt32)
+#eval CInt32.mk 4294967295
+#eval CInt32.mk 4294967296
+#eval CInt32.mk 4294967297
+#eval 2^32
 
 /-theorem add_mod {a b : Int32} :
   add_32 a b =
@@ -30,4 +35,3 @@ def x : CInt32 := ⟨5⟩
 
 def square (x : Int) : Int :=
   x * x
-theorem square_correct (x : Int) :
